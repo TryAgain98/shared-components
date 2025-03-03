@@ -73,7 +73,7 @@ const initialState: TMapBuilder = {
 };
 
 export const mapBuilder = createSlice({
-  name: 'mapBuilder',
+  name: 'sharedComponents/mapBuilder',
   initialState,
   reducers: {
     resetState: () => initialState,
