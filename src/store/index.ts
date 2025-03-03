@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import buttonReducer from './buttonSlice';
 import mapBuilderReducer from './map-builder.slice';
 import { TypedUseSelectorHook } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
-    button: buttonReducer,
     mapBuilder: mapBuilderReducer,
   }
 });

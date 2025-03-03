@@ -1,6 +1,6 @@
 {
   "name": "@tryagain98/shared-components",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "main": "./dist/shared-components.cjs.js",
   "module": "./dist/shared-components.es.js",

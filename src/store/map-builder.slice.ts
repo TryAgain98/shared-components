@@ -58,7 +58,7 @@ const initialState: TMapBuilder = {
   shapes: [],
   texts: [],
   selected: null,
-  actionType: ActionType.Mouse,
+  actionType: ActionType.Seat,
   groupSelected: [],
   isDragging: false,
   history: [],

@@ -19,6 +19,8 @@ import { Stage, Layer } from 'react-konva';
 import { useAppSelector } from '@/store';
 import { StageProvider } from './StageProvider';
 import GhostSeat from './seat/GhostSeat';
+import { useSeatDrawer } from './seat/useSeatDrawer';
+// import { KonvaEventObject } from 'konva/lib/Node';
 // import { mapBuilderActions } from '@/store/map-builder.slice';
 
 const STAGE_PADDING = 30;
@@ -49,7 +51,7 @@ export  function MapStage({ width = 1000, height = 1000 }: MapStageProps) {
 
   // const { handleWheel, handleScale } = useMap({ stageRef });
 
-  // const { handleSeatClick, selectedSeatGroupsBounds } = useSeatDrawer({});
+  const { handleSeatClick } = useSeatDrawer({});
 
   // const {
   //   handleMouseDown: handleAreaShapeMouseDown,
@@ -85,31 +87,18 @@ export  function MapStage({ width = 1000, height = 1000 }: MapStageProps) {
   //   },
   // });
 
-  // const handleStageClick = (e: KonvaEventObject<MouseEvent>) => {
-  //   if (!stageRef.current) return;
-  //   const stage = stageRef.current.getStage();
-  //   const pointer = stage.getPointerPosition();
-  //   if (!pointer) return;
+  const handleStageClick = () => {
+    if (!stageRef.current) return;
+    const stage = stageRef.current.getStage();
+    const pointer = stage.getPointerPosition();
+    if (!pointer) return;
 
-  //   const scale = stage.scaleX();
-  //   const correctedX = (pointer.x - stage.x()) / scale;
-  //   const correctedY = (pointer.y - stage.y()) / scale;
-  //   if (
-  //     actionType === ActionType.Mouse &&
-  //     e.target === e.target.getStage() &&
-  //     selected
-  //   ) {
-  //     dispatch(mapBuilderActions.setSelected(null));
-  //   } else if (actionType === ActionType.Seat) {
-  //     return handleSeatClick(correctedX, correctedY);
-  //   } else if (actionType === ActionType.Text) {
-  //     return handleTextClick(correctedX, correctedY);
-  //   } else if (isAreaShapeAction(actionType)) {
-  //     return handleAreaShapeClick(correctedX, correctedY);
-  //   } else if (isShapeAction(actionType)) {
-  //     return handleShapeClick(correctedX, correctedY);
-  //   }
-  // };
+    const scale = stage.scaleX();
+    const correctedX = (pointer.x - stage.x()) / scale;
+    const correctedY = (pointer.y - stage.y()) / scale;
+    console.log("handleSeatClick")
+     handleSeatClick(correctedX, correctedY);
+  };
 
   // const handleMouseMove = () => {
   //   if (!stageRef.current) return;
@@ -172,7 +161,7 @@ export  function MapStage({ width = 1000, height = 1000 }: MapStageProps) {
           className="relative flex-1 overflow-hidden rounded-[16px] bg-[#ffffff] p-[30px]"
         >
           <Stage
-            // onClick={handleStageClick}
+            onClick={handleStageClick}
             // onMouseMove={handleMouseMove}
             width={width || stageWrapperBounds.width - STAGE_PADDING * 2}
             height={height || stageWrapperBounds.height - STAGE_PADDING * 2}
